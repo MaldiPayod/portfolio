@@ -1,11 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Melody Payod</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
 </head>
+
 <body>
-    
+
+    <nav>
+        <div class="logo"><img src="img/logo.png" alt="logo" style="width:34px; height:34px;"></div>
+        <div class="links">
+            <a href="#top">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About me</a>
+            <a href="#connect">Contacts</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="top">
+        <div class="wrap">
+            <div>
+                <h1>Welcome</h1>
+                <p>to Melody Payod's portfolio</p>
+            </div>
+            <div class="logo-circle"><img src="img/logo.png" alt="logo"></div>
+        </div>
+    </section>
+
+    <section class="projects reveal" id="projects">
+        <div class="wrap">
+            <h2>PROJECTS</h2>
+            <div class="proj-grid" id="proj-grid"></div>
+        </div>
+    </section>
+
+    <section class="carousel-section reveal">
+        <div class="wrap">
+            <h2>UI Designs</h2>
+            <div class="carousel-track-wrap" id="ui-wrap">
+                <div class="carousel-track" id="ui-track"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="carousel-section reveal">
+        <div class="wrap">
+            <h2>Pubmats</h2>
+            <div class="carousel-track-wrap" id="pubmat-wrap">
+                <div class="carousel-track" id="pubmat-track"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="about reveal" id="about">
+        <div class="wrap">
+            <div class="pic"><img src="img/profile.png" alt="profile picture"></div>
+            <div class="abt_text">
+                <h2>ABOUT ME</h2>
+                <p>Hello! I am Melody N. Payod, an ICT graduate and a current BSIT freshman at Quezon City University. I
+                    love to learn about web development, programming, and technology by improving my skills through
+                    practice and self-enrollment in online courses. I have a passion for UI and graphic designing. (˶ᵔ ᵕ
+                    ᵔ˶)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect" class="reveal">
+        <div class="wrap">
+            <h2>LET'S CONNECT</h2>
+            <p style="opacity:.85;">Got an inquiry in mind? Reach out!</p>
+            <div class="icons">
+                <a href="#" title="facebook"><img src="img/fb.jpg" alt="facebook"></a>
+                <a href="#" title="instagram"><img src="img/ig.jpg" alt="instagram"></a>
+                <a href="#" title="email"><img src="img/mail.jpg" alt="gmail"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <button class="close" onclick="closeModal()">✕</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-desc"></p>
+            <div class="more-pics" id="modal-pics"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

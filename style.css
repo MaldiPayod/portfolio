@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Jua&display=swap');
+:root {
+  --sage: #a9bfa0;
+  --sage-deep: #6e8e68;
+  --sage-dark: #3f5a3c;
+  --cream: #fbf8f1;
+  --blush: #f3d9ce;
+  --ink: #2e3b2a;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+font-family: "Jua", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+}
+h2,
+h3 {
+font-family: "Jua", sans-serif;  font-size: 35px;
+    font-weight: 100px;
+}
+section {
+  padding: 70px 20px;
+}
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: var(--cream);
+  border-bottom: 2px solid var(--sage-dark);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+nav .links {
+  display: flex;
+  gap: 18px;
+  font-weight: 700;
+  font-size: 14px;
+}
+nav .links a {
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+nav .links a:hover {
+  color: var(--sage-deep);
+}
+
+/* fade-in scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MAINNN */
+.hero {
+  min-height: calc(100vh - 66px); /* fills the screen below the sticky navbar */
+  display: flex;
+  align-items: center;
+}
+.hero .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.hero h1 {
+  font-size: 750%;
+  color: var(--sage-dark);
+    font-family: "Gorditas", serif;
+  font-weight: 700;
+  margin: 20px;
+}
+.hero p {
+  font-size: 17px;
+  opacity: 0.75;
+  margin-top: 8px;
+  max-width: 340px;
+  margin-left: auto;
+
+}
+.logo-circle {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+/* RESPONSIVE: tablet*/
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding: 50px 20px;
+  }
+  .hero h1 {
+    font-size: 70px;
+    margin: 10px;
+  }
+  .logo-circle {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+/*RESPONSIVE: mobile */
+@media (max-width: 600px) {
+  nav {
+    padding: 12px 16px;
+  }
+  nav .links {
+    gap: 10px;
+    font-size: 12px;
+  }
+  .hero {
+    padding: 40px 16px;
+    text-align: center;
+  }
+  .hero .wrap {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 65px;
+  }
+  .hero p {
+    max-width: 100%;
+  }
+  .logo-circle {
+    width: 130px;
+    height: 130px;
+  }
+  section {
+    padding: 44px 16px;
+  }
+}
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.proj-card .thumb img,
+.c-item img,
+.about .pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PROJECTS (clickable)*/
+.projects {
+  background: var(--sage-dark);
+  color: white;
+}
+.projects h2 {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.proj-card {
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s;
+}
+.proj-card:hover {
+  transform: translateY(-4px);
+}
+.proj-card .thumb {
+  height: 140px;
+  background: var(--sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  overflow: hidden;
+}
+.proj-card .info {
+  padding: 12px 14px;
+}
+.proj-card .info h3 {
+  font-size: 15px;
+}
+.proj-card .info span {
+  font-size: 12px;
+  color: var(--sage-deep);
+  font-weight: 800;
+}
+
+/* CAROUSEL auto-scroll */
+.carousel-section h2 {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.carousel-track-wrap {
+  overflow-x: auto;
+  position: relative;
+  cursor: grab;
+  scrollbar-width: thin;
+}
+.carousel-track-wrap.dragging {
+  cursor: grabbing;
+}
+.carousel-track-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+.carousel-track-wrap::-webkit-scrollbar-thumb {
+  background: var(--sage-deep);
+  border-radius: 10px;
+}
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+.carousel-track .c-item {
+  width: 170px;
+  height: 170px;
+  flex-shrink: 0;
+  background: var(--sage);
+  border-radius: 16px;
+
+  border: 2px solid var(--sage-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: var(--sage-dark);
+  cursor: pointer;
+  transition: transform 0.15s;
+  overflow: hidden;
+}
+.carousel-track .c-item:hover {
+  transform: scale(1.05);
+}
+
+/* ABOUT ME */
+.about {
+  background: var(--blush);
+}
+.about .wrap {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.about .pic {
+  width: 150px;
+  height: 200px;
+}
+.abt_text {
+  flex:1;
+}
+
+/* CONTACTS */
+#connect {
+  background: var(--sage-dark);
+  color: white;
+  text-align: center;
+}
+#connect .icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+#connect .icons a {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-decoration: none;
+  overflow: hidden;
+  padding: 10px;
+}
+#connect .icons a img {
+  width: 100%;
+  height: 100%;
+}
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-box {
+  background: var(--cream);
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  padding: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+.modal-box .close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.modal-box .more-pics {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.modal-box .more-pics div {
+  width: 70px;
+  height: 70px;
+  background: var(--sage);
+  border-radius: 10px;
+}
