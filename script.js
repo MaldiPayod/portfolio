@@ -1,74 +1,25 @@
-/* ---- sample data ---- */
-const projects = [
-  {
-    emoji: "💻",
-    title: "project one",
-    desc: "short description of what this project is about.",
-  },
-  {
-    emoji: "🎨",
-    title: "project two",
-    desc: "short description of what this project is about.",
-  },
-  {
-    emoji: "📱",
-    title: "project three",
-    desc: "short description of what this project is about.",
-  },
-];
-const projGrid = document.getElementById("proj-grid");
-projects.forEach((p, i) => {
-  const card = document.createElement("div");
-  card.className = "proj-card";
-  card.innerHTML = `<div class="thumb">${p.emoji}</div><div class="info"><span>see details</span><h3>${p.title}</h3></div>`;
-  card.addEventListener("click", () => openModal(p));
-  projGrid.appendChild(card);
-});
+/* carousels: duplicate the static items forda auto-scroll loop, then auto-scroll (pausable) + drag to scroll*/
 
-function openModal(p) {
-  document.getElementById("modal-title").textContent = p.title;
-  document.getElementById("modal-desc").textContent = p.desc;
-  const pics = document.getElementById("modal-pics");
-  pics.innerHTML = "";
-  for (let i = 0; i < 4; i++) {
-    const d = document.createElement("div");
-    pics.appendChild(d);
-  }
-  document.getElementById("modal").classList.add("open");
-}
-function closeModal() {
-  document.getElementById("modal").classList.remove("open");
-}
-document.getElementById("modal").addEventListener("click", (e) => {
-  if (e.target.id === "modal") closeModal();
-});
-
-/* ---- carousels: fill content, auto-scroll (pausable), drag-to-scroll, click-to-zoom ---- */
-function fillTrack(id, emoji, count) {
+function duplicateTrack(id) {
   const track = document.getElementById(id);
-  let html = "";
-  for (let i = 0; i < count; i++) {
-    html += `<div class="c-item" data-label="item ${i + 1}">${emoji}</div>`;
-  }
-  track.innerHTML = html + html; // duplicate so the loop looks seamless
+  track.innerHTML += track.innerHTML;
 }
-fillTrack("ui-track", "🎨", 6);
-fillTrack("pubmat-track", "📣", 6);
+duplicateTrack("gallery-track");
+duplicateTrack("designs-track");
 
 function setupCarousel(wrapId, direction, speed) {
   const wrap = document.getElementById(wrapId);
   let autoScroll = true;
   let resumeTimer = null;
-  let lastTime = null; // NEW — para ma-track natin yung time-based movement
+  let lastTime = null; 
 
-  // auto-scroll loop, ngayon gamit ang delta time para consistent sa lahat ng devices
+  // auto-scroll loop
   function step(timestamp) {
     if (lastTime === null) lastTime = timestamp;
     const delta = timestamp - lastTime; // gaano katagal mula noong huling frame
     lastTime = timestamp;
 
     if (autoScroll) {
-      // (delta / 16.67) ang nag-nonormalize sa "ideal" 60fps na baseline
       wrap.scrollLeft += direction * speed * (delta / 16.67);
       const half = wrap.scrollWidth / 2;
       if (direction > 0 && wrap.scrollLeft >= half) wrap.scrollLeft = 0;
@@ -86,7 +37,7 @@ function setupCarousel(wrapId, direction, speed) {
     }, 2500);
   }
 
-  // drag-to-scroll (mouse) — same lang dati
+  // drag-to-scroll (mouse)
   let isDown = false,
     startX = 0,
     startScroll = 0,
@@ -113,21 +64,17 @@ function setupCarousel(wrapId, direction, speed) {
   wrap.addEventListener("touchstart", pauseThenResume, { passive: true });
   wrap.addEventListener("wheel", pauseThenResume, { passive: true });
 
+  // di bast basta maoopen pic
   wrap.querySelectorAll(".c-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      if (moved > 6) return;
-      openModal({
-        title: item.dataset.label,
-        desc: "click zoom preview — swap this with the real image/details.",
-        emoji: item.textContent,
-      });
+    item.addEventListener("click", (e) => {
+      if (moved > 6) e.preventDefault();
     });
   });
 }
-setupCarousel("ui-wrap", 1, 0.9); // slight speed bump — 0.6 → 0.9
-setupCarousel("pubmat-wrap", -1, 0.9);
+setupCarousel("gallery-wrap", 1, 0.9);
+setupCarousel("designs-wrap", -1, 0.9);
 
-/* ---- fade-in on scroll ---- */
+// fade in scroll
 const revealEls = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {

@@ -43,9 +43,12 @@ nav {
   position: sticky;
   top: 0;
   z-index: 20;
+  border-radius: 10px;
+  box-shadow: -3px 5px 10px #3f3f3f;
 }
 nav .links {
   display: flex;
+  flex-wrap: wrap;
   gap: 50px;
   font-weight: 700;
   font-size: 18px;
@@ -74,7 +77,7 @@ nav .links a:hover {
 
 /* MAINNN */
 .hero {
-  min-height: calc(100vh - 66px); /* fills the screen below the sticky navbar */
+  min-height: calc(100vh - 66px);
   display: flex;
   align-items: center;
 }
@@ -90,14 +93,12 @@ nav .links a:hover {
   font-size: clamp(40px, 10vw, 110px);
   color: var(--sage-dark);
   font-family: "Gorditas", serif;
-  font-weight: 700;
   margin: 20px;
 }
 .hero p {
-  font-size: 17px;
+  font-size: 20px;
   opacity: 0.75;
-  margin-top: 8px;
-  max-width: 340px;
+  text-align: center;
 }
 .logo-circle {
   width: 220px;
@@ -113,8 +114,12 @@ nav .links a:hover {
   .hero {
     min-height: auto;
     padding: 50px 20px;
+    height: 85vh;
   }
 
+  .hero p {
+    text-align: center;
+  }
   .logo-circle {
     width: 170px;
     height: 170px;
@@ -127,12 +132,13 @@ nav .links a:hover {
     padding: 12px 16px;
   }
   nav .links {
-    gap: 10px;
-    font-size: 12px;
+    gap: 14px;
+    font-size: 14px;
   }
   .hero {
     padding: 40px 16px;
     text-align: center;
+    height: 85vh;
   }
   .hero .wrap {
     flex-direction: column-reverse;
@@ -176,12 +182,13 @@ nav .links a:hover {
 
 /* PROJECTS (clickable)*/
 .projects {
+  min-height: calc(90vh - 66px);
   background: var(--sage-dark);
   color: white;
 }
 .projects h2 {
   text-align: center;
-  margin-bottom: 26px;
+  margin-bottom: 40px;
 }
 .proj-grid {
   display: grid;
@@ -193,32 +200,34 @@ nav .links a:hover {
   color: var(--ink);
   border-radius: 18px;
   overflow: hidden;
-  cursor: pointer;
   box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.15);
   transition: transform 0.15s;
 }
-.proj-card:hover {
-  transform: translateY(-15px);
-}
-.proj-card .thumb {
-  height: 140px;
-  background: var(--sage);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  overflow: hidden;
-}
 .proj-card .info {
-  padding: 12px 14px;
+  padding: 40px 20px;
 }
 .proj-card .info h3 {
-  font-size: 15px;
+  font-size: 16px;
+  margin: 0 0 20px;
 }
-.proj-card .info span {
-  font-size: 12px;
-  color: var(--sage-deep);
-  font-weight: 800;
+.proj-card .pdf-btn {
+  display: inline-block;
+  font-family: "Jua", sans-serif;
+  font-size: 15px;
+  font-weight: 80;
+  color: white;
+  text-decoration: none;
+  background: var(--sage-deep);
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+.proj-card .pdf-btn:hover {
+  background: var(--sage-dark);
+  transform: translateY(-3px);
 }
 
 /* CAROUSEL auto-scroll */
@@ -227,12 +236,15 @@ nav .links a:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 50px;
 }
 .carousel-track-wrap {
   overflow-x: auto;
   position: relative;
   cursor: grab;
   scrollbar-width: thin;
+  height: 50vh;
+  margin-bottom: 30px;
 }
 .carousel-track-wrap.dragging {
   cursor: grabbing;
@@ -246,55 +258,62 @@ nav .links a:hover {
 }
 .carousel-track {
   display: flex;
-  gap: 16px;
+  gap: 30px;
   width: max-content;
 }
 .carousel-track .c-item {
-  width: 170px;
-  height: 170px;
   flex-shrink: 0;
   background: var(--sage);
   border-radius: 16px;
   border: 2px solid var(--sage-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  color: var(--sage-dark);
+  display: block;
+  text-decoration: none;
   cursor: pointer;
   transition: transform 0.15s;
   overflow: hidden;
+  box-shadow: 5px 2px 10px #3f3f3f;
+}
+#gallery-track .c-item {
+  width: 200px;
+  height: 300px;
+}
+#designs-track .c-item {
+  width: 280px;
+  height: 210px;
 }
 .carousel-track .c-item:hover {
-  transform: scale(0.90);
+  transform: scale(0.9);
 }
 
 /* ABOUT ME */
 .about {
+  min-height: calc(90vh - 66px);
   background: var(--blush);
 }
 .about .wrap {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
   flex-wrap: wrap;
 }
 .about .pic {
-  width: 220px;
-  height: 220px;
-  border-radius: 16px;
+  width: 300px;
+  height: 300px;
+  border-radius: 700%;
   flex-shrink: 0;
   overflow: hidden;
+  box-shadow: 5px 10px 10px #3f3f3f;
 }
 .abt_text {
   font-size: 20px;
   flex: 1;
   min-width: 260px;
-  max-width: 480px;
+  max-width: 1000px;
 }
 
 /* CONTACTS */
 #connect {
+  min-height: calc(80vh - 66px);
   background: var(--sage-dark);
   color: white;
   text-align: center;
@@ -306,9 +325,8 @@ nav .links a:hover {
   margin-top: 16px;
 }
 #connect .icons a {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -320,50 +338,5 @@ nav .links a:hover {
 #connect .icons a img {
   width: 100%;
   height: 100%;
-}
-
-/* MODAL */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 50;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.modal-overlay.open {
-  display: flex;
-}
-.modal-box {
-  background: var(--cream);
-  border-radius: 20px;
-  max-width: 480px;
-  width: 100%;
-  padding: 24px;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-}
-.modal-box .close {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-.modal-box .more-pics {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  flex-wrap: wrap;
-}
-.modal-box .more-pics div {
-  width: 70px;
-  height: 70px;
-  background: var(--sage);
-  border-radius: 10px;
+  border-radius: 50px;
 }
